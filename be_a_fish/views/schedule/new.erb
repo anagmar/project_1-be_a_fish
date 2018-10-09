@@ -1,0 +1,36 @@
+<form action="/schedules" method="post">
+
+  <label for="dive-select">
+      Select the Location:
+      <select name="dive_id">
+        <% for dive in @dives %>
+        <option value="<%=dive.id%>"><%= dive.location %></option>
+        <% end  %>
+      </select>
+    </label>
+  
+
+  <label for="timing-select">Choose the time:</label>
+  <select name="timing" id="timing-select">
+    <option value="09:30:00">Morning (9:30)</option>
+    <option value="03:30:00">Afternoon (3:30)</option>
+  </select>
+
+  <label for="day-select">Choose the day:</label>
+  <select name="day" id="day-select">
+    <option value="Monday">Monday</option>
+    <option value="Tuesday">Tuesday</option>
+    <option value="Wednesday">Wednesday</option>
+    <option value="Thursday">Thursday</option>
+    <option value="Friday">Friday</option>
+  </select>
+
+  <label for="boat-spaces-field">Boat Spaces:</label>
+  <input
+  type="number"
+  name="empty_boat_spaces"
+  id="boat-spaces-field"
+  />
+
+  <input type="submit" value="New Dive">
+  </form>

@@ -1,0 +1,26 @@
+<main class="flex">
+  <nav>
+    <ul>
+      <li>
+        <a href="/divers/new">Create a New Diver</a>
+      </li>
+    </ul>
+  </nav>
+
+<h1>All Divers</h1>
+
+<% for diver in @divers %>
+
+<div class="divers">
+
+<p><%=diver.name%></p>
+
+<p><a href="/divers/<%=diver.id%>">View Diver Details</a></p>
+<p><a href="/divers/<%=diver.id%>/edit">Update Diver Details</a></p>
+<form action="/divers/<%=diver.id%>/delete" method="post">
+<input type="submit" value="Delete Diver"/>
+</form>
+<hr>
+</div>
+
+<% end  %>

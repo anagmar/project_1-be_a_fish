@@ -1,0 +1,20 @@
+<form action="/dives/<%=@dive.id%>" method="post">
+
+<label for="dive-name">Name of Dive Site:</label>
+<input
+    type="text"
+    name="location"
+    id = "dive-name"
+    value ="<%=@dive.location%>"
+  />
+
+<label for="difficulty-level">Select Difficulty Level:</label>
+  <select name="difficulty" id="difficulty-level">
+    <option value="Easy">Easy</option>
+    <option value="Advanced">Advanced</option>
+    <option value="Challenging">Challenging</option>
+  </select>
+
+  <input type="submit" value="Update Dive Site">
+
+</form>

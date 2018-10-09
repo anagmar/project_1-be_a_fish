@@ -1,4 +1,5 @@
 require_relative('../db/sql_runner')
+require_relative('dives.rb')
 
 class Schedule
 
@@ -28,6 +29,27 @@ class Schedule
       schedule = SqlRunner.run(sql,values)
       @id = schedule[0]['id'].to_i
   end
+#dives in a schedule
+def dives()
+  sql  = "SELECT *
+      FROM dives
+      WHERE id = $1"
+  values = [@dive_id]
+  result = SqlRunner.run(sql,values)
+  dives = Dive.new(result.first)
+  return dives
+end
+
+def dives_location()
+  sql  = "SELECT *
+      FROM dives
+      WHERE id = $1"
+  values = [@dive_id]
+  result = SqlRunner.run(sql,values)
+  dives = Dive.map_items(result)
+  return dives.location
+end
+
 
 #Read
   def self.all()
@@ -49,13 +71,12 @@ class Schedule
 #Update
   def update()
     sql = "UPDATE schedules SET(
-    dive_id,
     timing,
     day,
     empty_boat_spaces
     ) = ($1, $2, $3, $4)
     WHERE id = $5; "
-    values = [ @dive_id, @timing,@day,@empty_boat_spaces, @id]
+    values = [ @timing,@day,@empty_boat_spaces, @id]
     SqlRunner.run(sql, values)
   end
 

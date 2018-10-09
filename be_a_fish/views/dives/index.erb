@@ -1,0 +1,29 @@
+<main class="flex">
+  <nav>
+    <ul>
+      <li>
+        <a href="/dives/new">Add New Location</a>
+      </li>
+      <li>
+        <a href="/schedules">View Dives</a>
+      </li>
+    </ul>
+  </nav>
+
+<h1>All Locations</h1>
+
+<% for dive in @dives %>
+
+<div class="dives">
+
+<p><%=dive.location%></p>
+
+<p><a href="/dives/<%=dive.id%>">View Location Details</a></p>
+<p><a href="/dives/<%=dive.id%>/edit">Update Location Details</a></p>
+<form action="/dives/<%=dive.id%>/delete" method="post">
+<input type="submit" value="Delete Dive"/>
+</form>
+<hr>
+</div>
+
+<% end  %>
