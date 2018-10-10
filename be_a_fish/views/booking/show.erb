@@ -1,0 +1,10 @@
+
+
+<h1>Booking</h1>
+<p>Diver: <%=@booking.divers.name%> </p>
+<p>Location: <%=@booking.schedule.dives.location%> </p>
+<p></p>Difficulty: <%=@booking.schedule.dives.difficulty  %>
+<p>Time: <%=@booking.schedule.timing%></p>
+<p>Day: <%=@booking.schedule.day  %></p>
+
+<a href="/bookings/<%=@booking.id%>/edit">Update Booking Details</a>

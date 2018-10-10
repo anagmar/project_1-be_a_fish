@@ -1,0 +1,26 @@
+<main class="flex">
+  <nav>
+    <ul>
+      <li>
+        <a href="/bookings/new">Book a Dive</a>
+      </li>
+    </ul>
+  </nav>
+
+<h1>All Bookings </h1>
+
+<% for booking in @bookings %>
+
+<div class="booking">
+
+<p>Diver: <%=booking.divers.name%></p>
+<p>Location: <%=booking.schedule.dives.location %></p>
+<p>Day: <%=booking.schedule.day  %></p>
+<p>Session: <%=booking.schedule.session  %></p>
+<p><a href="/bookings/<%=booking.id%>">View Booking Details</a></p>
+
+<hr>
+</div>
+
+
+<% end  %>

@@ -1,4 +1,15 @@
-<form action="/schedules" method="post">
+
+<form action="/bookings" method="post">
+
+
+  <label for="diver-select">
+      Select the Diver:
+      <select name="diver_id">
+        <% for diver in @divers %>
+        <option value="<%=diver.id%>"><%= diver.name %></option>
+        <% end  %>
+      </select>
+    </label>
 
   <label for="dive-select">
       Select the Location:
@@ -8,6 +19,16 @@
         <% end  %>
       </select>
     </label>
+
+    <label for="dive-time-select">
+        Select the Location:
+        <select name="dive_id">
+          <% for dive in @dives %>
+          <option value="<%=dive.id%>"><%= dive.location %></option>
+          <% end  %>
+        </select>
+      </label>
+
 
 
   <label for="timing-select">Choose the time:</label>

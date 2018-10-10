@@ -1,4 +1,6 @@
 require_relative('../db/sql_runner')
+require_relative('diver.rb')
+require_relative('schedule.rb')
 
 class Booking
 
@@ -10,6 +12,18 @@ class Booking
     @diver_id = options['diver_id'].to_i
     @schedule_id = options['schedule_id'].to_i
   end
+
+
+  def divers()
+    sql  = "SELECT *
+        FROM divers
+        WHERE id = $1"
+    values = [@diver_id]
+    result = SqlRunner.run(sql,values)
+    diver = Diver.new(result.first)
+    return diver
+  end
+
 
 #Create
   def save()
@@ -24,11 +38,25 @@ class Booking
       @id = booking[0]['id'].to_i
   end
 
+#schedule
+  def schedule()
+    sql  = "SELECT *
+        FROM schedules
+        WHERE id = $1"
+    values = [@schedule_id]
+    result = SqlRunner.run(sql,values)
+    schedule = Schedule.new(result.first)
+    return schedule
+  end
+
+
+
+
 #Read
   def self.all()
     sql = "SELECT * FROM bookings"
     bookings = SqlRunner.run(sql)
-    return Schedule.map_items(bookings)
+    return Booking.map_items(bookings)
   end
 
 #Find

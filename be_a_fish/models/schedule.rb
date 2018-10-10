@@ -29,6 +29,20 @@ class Schedule
       schedule = SqlRunner.run(sql,values)
       @id = schedule[0]['id'].to_i
   end
+
+#Session
+def session()
+
+  if timing == "09:30:00"
+     return "Morning Session"
+  else
+     return "Afternoon Session"
+  end
+end
+
+
+
+
 #dives in a schedule
 def dives()
   sql  = "SELECT *

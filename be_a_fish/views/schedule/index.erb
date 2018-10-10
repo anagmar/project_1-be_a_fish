@@ -2,18 +2,22 @@
   <nav>
     <ul>
       <li>
-        <a href="/schedules/new">Add New Dive</a>
+        <a href="/schedules/new">Add New Schedualed Dive</a>
+      </li>
+      <li>
+        <a href="/bookings/new">Book a Schedualed Dive</a>
       </li>
     </ul>
   </nav>
 
-<h1>All Dives </h1>
+<h1>All Scheduled Dives for the Week </h1>
 
 <% for schedule in @schedules %>
 
 <div class="dives">
 
 <p>Location: <%=schedule.dives.location%></p>
+<p>Time: <%=schedule.timing %></p>
 <p>Day: <%=schedule.day%></p>
 <p><a href="/schedules/<%=schedule.id%>">View Dive Details</a></p>
 <form action="/schedules/<%=schedule.id%>/delete" method="post">
