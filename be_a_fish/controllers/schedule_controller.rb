@@ -53,3 +53,12 @@ post ('/schedules/:id/delete') do
   schedule.delete
   redirect to '/schedules'
 end
+
+#show bookings
+get ('/schedules/bookings/:id')do
+  id = params[:id].to_i()
+  # binding.pry
+  @schedule = Schedule.find(id)
+  # @bookings = Booking.all()
+  erb (:"schedule/show-bookings")
+end

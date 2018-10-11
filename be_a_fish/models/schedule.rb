@@ -40,6 +40,18 @@ def session()
   end
 end
 
+#divers in this scheduled dives
+def divers_scheduled()
+  sql  = "SELECT *
+      FROM divers
+      INNER JOIN bookings
+      ON bookings.diver_id = divers.id
+      WHERE bookings.schedule_id = $1"
+  values = [@id]
+  result = SqlRunner.run(sql,values)
+  dives = Diver.new(result.first)
+  return dives
+end
 
 
 
@@ -53,6 +65,17 @@ def dives()
   dives = Dive.new(result.first)
   return dives
 end
+
+#see the bookings for this schedule
+def bookings()
+  sql  = "SELECT bookings.*
+          FROM bookings
+          WHERE bookings.schedule_id = $1"
+          values = [@id]
+          result = SqlRunner.run(sql,values)
+          bookings = Booking.map_items(result)
+          return bookings
+        end
 
 def dives_location()
   sql  = "SELECT *

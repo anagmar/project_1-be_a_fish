@@ -1,0 +1,17 @@
+
+<h1>All Bookings </h1>
+
+<div class="booking">
+<hr>
+<% for booking in @schedule.bookings %>
+
+<p>Diver: <%= booking.divers.name %></p>
+<p>Diver: <%= booking.divers.level %></p>
+<p>Fit for Dive: <%= booking.divers.fit?(booking.one_location)  %></p>
+
+<p><a href="/divers/<%=booking.diver_id%>">View Diver Details</a></p>
+<p><a href="/bookings/<%=booking.id%>">View Booking Details</a></p>
+<hr>
+<% end %>
+
+</div>

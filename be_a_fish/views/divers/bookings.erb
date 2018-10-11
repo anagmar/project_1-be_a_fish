@@ -1,0 +1,18 @@
+<h1>All Bookings </h1>
+
+<div class="booking">
+<hr>
+<% for schedule in @diver.dives_scheduled %>
+
+<p>Location: <%= schedule.dives.location  %></p>
+<p>Time: <%= schedule.timing  %></p>
+<p>Day: <%= schedule.day  %></p>
+<p>Fit For Dive: <%= schedule.divers_scheduled.fit?(schedule.dives) %></p>
+
+
+<p><a href="/divers/<%=@diver.id%>">View Diver Details</a></p>
+<hr>
+<% end %>
+</div>
+
+<p><a href="/bookings/new/diver/<%=@diver.id%>">Create a New Booking</a></p>

@@ -14,13 +14,16 @@
 <div class="booking">
 
 <p>Diver: <%=booking.divers.name%></p>
-<p>Location: <%=booking.schedule.dives.location %></p>
-<p>Day: <%=booking.schedule.day  %></p>
-<p>Session: <%=booking.schedule.session  %></p>
+<p>Location: <%=booking.schedule.dives.location%></p>
+<p>Time: <%=booking.schedule.timing%> / <%= booking.schedule.session %></p>
+<p>Day: <%=booking.schedule.dives.location%></p>
+
+
 <p><a href="/bookings/<%=booking.id%>">View Booking Details</a></p>
-
+<form action="/bookings/<%=booking.id%>/delete" method="post">
+<input type="submit" value="Delete Booking"/>
 <hr>
-</div>
 
+</div>
 
 <% end  %>

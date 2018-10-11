@@ -1,6 +1,7 @@
 require_relative('../db/sql_runner')
 require_relative('diver.rb')
 require_relative('schedule.rb')
+require_relative('dives.rb')
 
 class Booking
 
@@ -24,6 +25,105 @@ class Booking
     return diver
   end
 
+  def schedule()
+    sql  = "SELECT *
+        FROM schedules
+        WHERE id = $1"
+    values = [@schedule_id]
+    result = SqlRunner.run(sql,values)
+    diver = Schedule.new(result.first)
+    return diver
+  end
+
+
+#divers leve
+  def diver_level()
+      sql  = "SELECT *
+          FROM divers
+          WHERE id = $1"
+      values = [@diver_id]
+      result = SqlRunner.run(sql,values)
+      diver = Diver.new(result.first)
+      return diver.level
+    end
+
+  # def schedule()
+  #   sql  = "SELECT schedules.*
+  #       FROM schedules
+  #       WHERE id = $1"
+  #   values = [@schedule_id]
+  #   result = SqlRunner.run(sql,values)
+  #   diver = Schedule.map_items(result)
+  #   return diver
+  # end
+
+#To see if the diver is fit for the dive
+# def fit_diver?(diver)
+#   if diver.level == "Open Water" && dive.difficulty == "Easy"
+#     return "Fit for Dive"
+#   elsif diver.level == "Advanced" && dive.difficulty == ("Advanced" || "Easy")
+#     return "Fit for Dive"
+#  elsif diver.level == "Master Diver" && dive.difficulty == ("Advanced" || "Easy" || "Challenging")
+#    return "Fit for Dive"
+#  else
+#    return "Not it or dive. Talk to an instructor"
+#  end
+# end
+
+
+#location_of_booking
+  def locations()
+    sql  = "SELECT dives.*
+            FROM dives
+            INNER JOIN schedules
+            ON schedules.dive_id = dives.id
+            WHERE schedules.id = $1"
+    values = [@schedule_id]
+    result = SqlRunner.run(sql,values)
+    dive = Dive.map_items(result)
+    return dive
+  end
+
+def one_location()
+    sql  = "SELECT dives.*
+            FROM dives
+            INNER JOIN schedules
+            ON schedules.dive_id = dives.id
+            WHERE schedules.id = $1"
+    values = [@schedule_id]
+    result = SqlRunner.run(sql,values)
+    dive = Dive.map_items(result)
+    return dive.first
+  end
+
+
+#difficulty of dive=
+def difficulty_location()
+  sql  = "SELECT dives.*
+          FROM dives
+          INNER JOIN schedules
+          ON schedules.dive_id = dives.id
+          WHERE schedules.id = $1"
+  values = [@schedule_id]
+  result = SqlRunner.run(sql,values)
+  dive = Dive.map_items(result)
+  return dive.first.difficulty
+end
+
+  # def booking_location()
+  #   sql  = "SELECT dives.location
+  #           FROM dives
+  #           INNER JOIN schedules
+  #           ON schedules.dive_id = dives.id
+  #           INNER JOIN bookings
+  #           ON bookings.schedule_id = schedules.id
+  #           WHERE schedule_id = $1"
+  #   values = [@schedule_id]
+  #   result = SqlRunner.run(sql,values)
+  #   dive = Dive.new(result.first)
+  #   return dive.location
+  # end
+
 
 #Create
   def save()
@@ -39,15 +139,6 @@ class Booking
   end
 
 #schedule
-  def schedule()
-    sql  = "SELECT *
-        FROM schedules
-        WHERE id = $1"
-    values = [@schedule_id]
-    result = SqlRunner.run(sql,values)
-    schedule = Schedule.new(result.first)
-    return schedule
-  end
 
 
 

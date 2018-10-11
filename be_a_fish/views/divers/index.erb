@@ -13,9 +13,11 @@
 
 <div class="divers">
 
-<p><%=diver.name%></p>
+<p>Name: <%=diver.name%></p>
+<p>Level: <%=diver.level%></p>
 
 <p><a href="/divers/<%=diver.id%>">View Diver Details</a></p>
+<p><a href="/divers/bookings/<%=diver.id  %>">View Diver Bookings</a></p>
 <p><a href="/divers/<%=diver.id%>/edit">Update Diver Details</a></p>
 <form action="/divers/<%=diver.id%>/delete" method="post">
 <input type="submit" value="Delete Diver"/>

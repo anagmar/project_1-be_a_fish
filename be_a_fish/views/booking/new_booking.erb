@@ -1,0 +1,16 @@
+
+<form action="/bookings" method="post">
+
+<label for="dive-select">
+    Select the Dive:
+    <select name="schedule_id">
+      <% for schedule in @schedules %>
+      <option value="<%=schedule.id%>"><%= schedule.dives.location %> - <%= schedule.day  %> - <%= schedule.timing  %></option>
+      <% end  %>
+    </select>
+
+
+<input type="number" name="diver_id" value="<%=@diver.id %>" hidden>
+
+<input type="submit" value="New Booking">
+</form>

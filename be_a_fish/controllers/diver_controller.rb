@@ -21,6 +21,14 @@ get ('/divers/:id') do
   erb (:"divers/show")
 end
 
+#Show diver_bookings
+get ('/divers/bookings/:id') do
+  id = params[:id].to_i
+  @diver = Diver.find(id)
+  erb(:"divers/bookings")
+end
+
+
 #create
 post ('/divers') do
   @diver = Diver.new(params)
